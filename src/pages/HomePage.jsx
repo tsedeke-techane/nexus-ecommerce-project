@@ -1,9 +1,64 @@
-import { products } from "../../Demodata/data/products";
-
+// import { products } from "../../Demodata/data/products";
+import { use } from "react";
 import { Header } from "../components/Header";
 import "./HomePage.css";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 function HomePage() {
+   const [ products, setProducts ] = useState([]);
+
+  useEffect(() => {
+
+
+    const fetchProducts = async () => {
+      try {
+
+
+        const response = await axios.get("http://localhost:3000/api/products");
+
+        setProducts(response.data);
+
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+  // fetch('http://localhost:3000/api/products')
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     console.log(data);
+  //   })
+  //   .catch((error) => {
+  //     console.error('Error fetching products:', error);
+  //   });
+
+
+
+// axios
+//   .get('http://localhost:3000/api/products')
+//   .then((response) => {
+//     console.log(response.data);
+//   })
+//   .catch((error) => {
+//     console.error('Error fetching products:', error);
+//   });
+
+
   return (
     <>
       <Header />
@@ -71,3 +126,21 @@ function HomePage() {
 }
 
 export default HomePage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
